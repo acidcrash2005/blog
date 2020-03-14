@@ -23,7 +23,7 @@ export const initOnContext = ctx => {
         if (inAppContext) {
             console.warn(
                 'Warning: You have opted-out of Automatic Static Optimization due to `withApollo` in `pages/_app`.\n' +
-                'Read more: https://err.sh/next.js/opt-out-auto-static-optimization\n'
+                    'Read more: https://err.sh/next.js/opt-out-auto-static-optimization\n'
             )
         }
     }
@@ -92,9 +92,9 @@ export const withApollo = ({ ssr = false } = {}) => PageComponent => {
 
         return (
             <ApolloProvider client={client}>
-            <PageComponent {...pageProps} />
-        </ApolloProvider>
-    )
+                <PageComponent {...pageProps} />
+            </ApolloProvider>
+        )
     }
 
     // Set the correct displayName in development
@@ -131,7 +131,9 @@ export const withApollo = ({ ssr = false } = {}) => PageComponent => {
                     try {
                         // Import `@apollo/react-ssr` dynamically.
                         // We don't want to have this in our client bundle.
-                        const { getDataFromTree } = await import('@apollo/react-ssr')
+                        const { getDataFromTree } = await import(
+                            '@apollo/react-ssr'
+                        )
 
                         // Since AppComponents and PageComponents have different context types
                         // we need to modify their props a little.
@@ -139,7 +141,9 @@ export const withApollo = ({ ssr = false } = {}) => PageComponent => {
                         if (inAppContext) {
                             props = { ...pageProps, apolloClient }
                         } else {
-                            props = { pageProps: { ...pageProps, apolloClient } }
+                            props = {
+                                pageProps: { ...pageProps, apolloClient },
+                            }
                         }
 
                         // Take the Next.js AppTree, determine which queries are needed to render,
@@ -152,7 +156,10 @@ export const withApollo = ({ ssr = false } = {}) => PageComponent => {
                         // Prevent Apollo Client GraphQL errors from crashing SSR.
                         // Handle them in components via the data.error prop:
                         // https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-query-data-error
-                        console.error('Error while running `getDataFromTree`', error)
+                        console.error(
+                            'Error while running `getDataFromTree`',
+                            error
+                        )
                     }
 
                     // getDataFromTree does not call componentWillUnmount

@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
         // Note: we provide webpack above so you should not `require` it
@@ -5,6 +7,12 @@ module.exports = {
         // Important: return the modified config
 
         config.module.rules.push({ test: /\.gql?$/, loader: 'webpack-graphql-loader' })
+
+
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            types: path.resolve(__dirname,'./src/types')
+        }
 
         return config
     },
