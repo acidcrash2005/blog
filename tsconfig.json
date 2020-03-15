@@ -17,12 +17,11 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "types/*": [
-        "types/*",
-        "hoc/*"
-      ]
+      "types/*": ["types/*"],
+      "hoc/*": ["hoc/*"],
+      "gql/*": ["gql/*"]
     }
   },
   "exclude": ["node_modules"],

@@ -5,13 +5,13 @@
         "dev": "next",
         "build": "(yarn lint) && (yarn gen:types) && next build",
         "start": "(yarn lint) && (yarn next)",
-        "prod": "next start",
+        "prod": "next start ./src",
         "type-check": "tsc",
         "gen:types": "graphql-codegen --config codegen.yml",
         "typescript": "tsc",
         "lint": "yarn tsc && yarn lint:eslint",
-        "lint:eslint": "eslint './pages/**/*.{ts,tsx}'",
-        "prettier:ts": "prettier-eslint --list-different $PWD/'pages/**/*.{ts,tsx}';prettier-eslint --write $PWD/'pages/**/*.{ts,tsx}'",
+        "lint:eslint": "eslint 'src/pages/**/*.{ts,tsx}'",
+        "prettier:ts": "prettier-eslint --list-different $PWD/'src/pages/**/*.{ts,tsx}';prettier-eslint --write $PWD/'pages/**/*.{ts,tsx}'",
         "format": "yarn prettier:ts"
     },
     "dependencies": {

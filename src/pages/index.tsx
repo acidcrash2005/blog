@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 import { useQuery } from '@apollo/react-hooks';
 import { GetUsersQuery, GetUsersQueryVariables } from 'types/gql';
 import { withApollo } from 'hoc/apollo';
-import GET_USERS from './getUsers.gql';
+import GET_USERS from 'gql/query/getUsers.gql';
 
 
 const IndexPage: NextPage = () => {
@@ -29,12 +29,12 @@ const IndexPage: NextPage = () => {
 
       <div>
         <Link href="/about">
-          <a>About</a>
+          About
         </Link>
       </div>
       <div>
         <Link href="/registration">
-          <a>Register</a>
+          Register
         </Link>
       </div>
 

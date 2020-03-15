@@ -17,8 +17,9 @@ module.exports = {
 
         config.resolve.alias = {
             ...config.resolve.alias,
-            types: path.resolve(__dirname, './types'),
-            hoc: path.resolve(__dirname, './hoc'),
+            types: path.resolve(__dirname, './src/types'),
+            hoc: path.resolve(__dirname, './src/hoc'),
+            gql: path.resolve(__dirname, './src/gql'),
         };
 
         return config;

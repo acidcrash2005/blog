@@ -1,5 +1,5 @@
 graphql.d.ts
 next.config.js
 next-env.d.ts
-hoc
-types/gql.ts
+src/hoc
+src/types/gql.ts
