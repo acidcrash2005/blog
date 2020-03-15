@@ -1,43 +1,45 @@
-import * as React from 'react'
-import Link from 'next/link'
-import Layout from '../components/Layout'
-import { NextPage } from 'next'
-import gql from 'graphql-tag'
-import { withApollo } from '../hoc/apollo'
-import { useQuery } from '@apollo/react-hooks'
-import GET_USERS from './getUsers.gql'
-import { GetUsersQuery, GetUsersQueryVariables } from 'types/gql'
+import React from 'react';
+import Link from 'next/link';
+import { NextPage } from 'next';
+import { useQuery } from '@apollo/react-hooks';
+import { GetUsersQuery, GetUsersQueryVariables } from 'types/gql';
+import { withApollo } from 'hoc/apollo';
+import GET_USERS from './getUsers.gql';
 
-const getUsers = gql`
-    ${GET_USERS}
-`
 
 const IndexPage: NextPage = () => {
-    const { data } = useQuery<GetUsersQuery, GetUsersQueryVariables>(getUsers, {
-        variables: {
-            limit: 100,
-        },
-        // Setting this value to true will make the component rerender when
-        // the "networkStatus" changes, so we are able to know if it is fetching
-        // more data
-        notifyOnNetworkStatusChange: true,
-    })
+  const { data } = useQuery<GetUsersQuery, GetUsersQueryVariables>(GET_USERS, {
+    variables: {
+      limit: 100,
+    },
 
-    const users = data?.users
+    notifyOnNetworkStatusChange: true,
+  });
 
-    return (
-        <Layout title="Home | Next.js + TypeScript Example">
-            <h1>Hello Next.js 👋</h1>
+  const users = data?.users;
 
-            <p>
-                <Link href="/about">
-                    <a>About</a>
-                </Link>
-            </p>
+  return (
+    <>
+      <h1>
+        Hello Next.js
+        <span role="img" aria-label="hello hand">
+          👋
+        </span>
+      </h1>
 
-            <div></div>
-        </Layout>
-    )
-}
+      <p>
+        <Link href="/about">
+          <span>About</span>
+        </Link>
+      </p>
 
-export default withApollo({ ssr: true })(IndexPage)
+      <ul>
+        {users?.map((user, index) => (
+          <li key={`${user?.id}${index}`}>{user?.username ?? ''}</li>
+        ))}
+      </ul>
+    </>
+  );
+};
+
+export default withApollo({ ssr: true })(IndexPage);
