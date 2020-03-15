@@ -400,6 +400,24 @@ export type UsersPermissionsUser = {
   role?: Maybe<UsersPermissionsRole>;
 };
 
+export type AddUserMutationVariables = {
+  email: Scalars['String'];
+  username: Scalars['String'];
+  pass: Scalars['String'];
+};
+
+
+export type AddUserMutation = (
+  { __typename?: 'Mutation' }
+  & { createUser: Maybe<(
+    { __typename?: 'createUserPayload' }
+    & { user: Maybe<(
+      { __typename?: 'UsersPermissionsUser' }
+      & Pick<UsersPermissionsUser, 'id' | 'email' | 'username'>
+    )> }
+  )> }
+);
+
 export type GetUsersQueryVariables = {
   limit?: Maybe<Scalars['Int']>;
 };

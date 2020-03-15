@@ -1,0 +1,9 @@
+mutation addUser($email: String!, $username: String!, $pass: String!){
+    createUser(input:{data:{username:$username,email: $email, password: $pass}}){
+        user{
+            id
+            email
+            username
+        }
+    }
+}

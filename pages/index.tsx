@@ -27,11 +27,16 @@ const IndexPage: NextPage = () => {
         </span>
       </h1>
 
-      <p>
+      <div>
         <Link href="/about">
-          <span>About</span>
+          <a>About</a>
         </Link>
-      </p>
+      </div>
+      <div>
+        <Link href="/registration">
+          <a>Register</a>
+        </Link>
+      </div>
 
       <ul>
         {users?.map((user, index) => (
